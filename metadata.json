@@ -1,0 +1,6 @@
+{
+  "name": "Copy of PlaneX AI : Planetary Feature Detector",
+  "description": "An application that uses AI to identify planets and their features from an uploaded image. Discover information about celestial bodies with a single click.",
+  "requestFramePermissions": [],
+  "prompt": ""
+}

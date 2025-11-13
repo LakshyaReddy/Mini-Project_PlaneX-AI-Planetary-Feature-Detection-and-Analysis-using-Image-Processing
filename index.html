@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Planetary Feature Detector</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+      body {
+        background-image: url('https://images.pexels.com/photos/110854/pexels-photo-110854.jpeg');
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-color: #000; /* Fallback color */
+        overflow: hidden; /* Hide scrollbars from star animations */
+        font-family: 'Exo 2', sans-serif;
+      }
+      .stars {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -3;
+      }
+      .stars {
+        background: #000 url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAUVBMVEWFhYWDg4N3d3dtbW17e3t1dXWBgYGHh4d5eXlzc3OLi4ubm5uVlZWPj4+NjY19fX2JiYl/f39ra2uRkZGZmZlpaWmXl5dvb29xcXGTk5NnZ2c8TV1PAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9InN0c2VmaW5zdGFuY2VJRD14bXAuaWlkOkU5OUM5MDIwODYzQTExRTY5NkMwQzBERjk5MkQxREQ3IiB4bWxuczpzdEV2dD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3N0VHlwZS9SZXNvdXJjZUV2ZW50IyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCIgeG1wOkNyZWF0ZURhdGU9IjIwMTYtMDktMjlUMTA6NDg6NTIrMDI6MDAiIHhtcDpNb2RpZnlEYXRlPSIyMDE2LTA5LTI5VDEwOjUwOjQ2KzAyOjAwIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkY5NEMyRDJBNzY2NzExRTZCRjgzQzk4NjU3NjU2QjZFIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkY5NEMyRDJCNzY2NzExRTZCRjgzQzk4NjU1NjU2QjZFIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6RTk5QzkwMjA4NjNBMTFFNjk2QzBDMEQ5OTkyRDFERDciIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6RTk5QzkwMjE4NjNBMTFFNjk2QzBDMEQ5OTkyRDFERDciLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4+7x+UAAAATklEQVR42pSW2w7AIAhD2/T/v3Y30k0s9ZUDH3ASBBZ2yiyh4pUomYAD7YAb1i5AIQf0M2yFsk0gXIAU5RDBATeM3SWAhB7QzbAVyiaByAFSUQwhMHCDXcnsj2sAAwA5XgJ3Hk5jAAAAAElFTkSuQmCC) repeat top left;
+        animation: move-twink-back 200s linear infinite;
+      }
+
+      .stars-2 {
+        background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAUVBMVEWFhYWDg4N3d3dtbW17e3t1dXWBgYGHh4d5eXlzc3OLi4ubm5uVlZWPj4+NjY19fX2JiYl/f39ra2uRkZGZmZlpaWmXl5dvb29xcXGTk5NnZ2c8TV1PAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9InN0c2VmaW5zdGFuY2VJRD14bXAuaWlkOkU5OUM5MDIwODYzQTExRTY5NkMwQzBERjk5MkQxREQ3IiB4bWxuczpzdEV2dD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3N0VHlwZS9SZXNvdXJjZUV2ZW50IyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCIgeG1wOkNyZWF0ZURhdGU9IjIwMTYtMDktMjlUMTA6NDg6NTIrMDI6MDAiIHhtcDpNb2RpZnlEYXRlPSIyMDE2LTA5LTI5VDEwOjUwOjQ2KzAyOjAwIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkY5NEMyRDJBNzY2NzExRTZCRjgzQzk4NjU3NjU2QjZFIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkY5NEMyRDJCNzY2NzExRTZCRjgzQzk4NjU1NjU2QjZFIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6RTk5QzkwMjA4NjNBMTFFNjk2QzBDMEQ5OTkyRDFERDciIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6RTk5QzkwMjE4NjNBMTFFNjk2QzBDMEQ5OTkyRDFERDciLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4+7x+UAAAAR0lEQVR42pSByQ0AIAwD8f+ft2dAhwI1YxX5NxMICiA2jKbsnETAYALs3YUEtJSlL0uWnSckAZZl51sCAGCDtxcfjwADADi0AfuVbayZAAAAAElFTkSuQmCC) repeat top left;
+        animation: move-twink-back 150s linear infinite;
+        z-index: -2;
+      }
+
+      .stars-3 {
+        background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAUVBMVEWFhYWDg4N3d3dtbW17e3t1dXWBgYGHh4d5eXlzc3OLi4ubm5uVlZWPj4+NjY19fX2JiYl/f39ra2uRkZGZmZlpaWmXl5dvb29xcXGTk5NnZ2c8TV1PAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9InN0c2VmaW5zdGFuY2VJRD14bXAuaWlkOkU5OUM5MDIwODYzQTExRTY5NkMwQzBERjk5MkQxREQ3IiB4bWxuczpzdEV2dD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3N0VHlwZS9SZXNvdXJjZUV2ZW50IyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCIgeG1wOkNyZWF0ZURhdGU9IjIwMTYtMDktMjlUMTA6NDg6NTIrMDI6MDAiIHhtcDpNb2RpZnlEYXRlPSIyMDE2LTA5LTI5VDEwOjUwOjQ2KzAyOjAwIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkY5NEMyRDJBNzY2NzExRTZCRjgzQzk4NjU3NjU2QjZFIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkY5NEMyRDJCNzY2NzExRTZCRjgzQzk4NjU1NjU2QjZFIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6RTk5QzkwMjA4NjNBMTFFNjk2QzBDMEQ5OTkyRDFERDciIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6RTk5QzkwMjE4NjNBMTFFNjk2QzBDMEQ5OTkyRDFERDciLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4+7x+UAAAAIElEQVR42pSByQkAMQwD8f+ft2dAhwI1YxX5NxMICiA2jKbsnETAYAI2AAYANTgBh94X2pEAAAAASUVORK5CYII=) repeat top left;
+        animation: move-twink-back 100s linear infinite;
+        z-index: -1;
+      }
+
+      @keyframes move-twink-back {
+          from {background-position:0 0;}
+          to {background-position:-10000px 5000px;}
+      }
+      #root {
+        overflow-y: auto;
+        height: 100vh;
+      }
+       @keyframes fade-in {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .animate-fade-in {
+          animation: fade-in 0.8s ease-out forwards;
+      }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.1.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.1.0/",
+    "react/": "https://esm.sh/react@^19.1.0/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.11.0",
+    "vite": "https://esm.sh/vite@^7.0.6",
+    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^4.7.0",
+    "process": "https://esm.sh/process@^0.11.10"
+  }
+}
+</script>
+</head>
+  <body>
+    <div class="stars"></div>
+    <div class="stars-2"></div>
+    <div class="stars-3"></div>
+    <div id="root"></div>
+    <script type="module" src="/src/index.tsx"></script>
+  </body>
+</html>
